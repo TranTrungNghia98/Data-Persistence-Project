@@ -72,5 +72,19 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        // Change high score
+        int currentHighScore = GameManager.Instance.GetHighScore();
+        int newHighScore = m_Points;
+
+        // If new high score > current high score
+        if (newHighScore > currentHighScore)
+        {
+            // Set new high score
+            string playerName = GameManager.Instance.GetPlayerName();
+
+            GameManager.Instance.SetPlayerName(playerName);
+            GameManager.Instance.SetHighScore(newHighScore);
+        }
     }
 }
